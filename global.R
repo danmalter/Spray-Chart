@@ -19,6 +19,7 @@ library(Lahman)
    names(batters)[names(batters) == 'id'] <- 'batter'
    
    spraychart <- merge(locations, batters, by="batter") 
+   names(spraychart)[names(spraychart) == 'des'] <- 'Description'
 
    spraychart.top10 <- subset(spraychart, full.name == "Jose Altuve" | full.name == "Victor Martinez" |
                                 full.name == "Michael Brantley" | full.name == "Adrian Beltre" | full.name == "Justin Morneau" |
@@ -37,7 +38,7 @@ library(Lahman)
 
 
 # For ease of loading into a Shiny app, I uploaded spraychart.top10 into Dropbox and loaded a csv file from there.
-spraychart <- paste("https://www.dropbox.com/s/nrbehu5ypvzufqd/spraychart.csv?dl=0")
+spraychart <- paste("https://www.dropbox.com/s/nlunrtjgniw3bmg/spraycharts.csv?dl=0")
 spraychart <- repmis::source_data(spraychart, sep = ",", header = TRUE)
 
 # Player data stats

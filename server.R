@@ -10,7 +10,7 @@ shinyServer(function(input, output, session) {
     
     paste0(spraychart$full.name[x$id],
            "<br>",
-           spraychart$des[x$id]
+           spraychart$Description[x$id]
     )
   }
   
@@ -21,21 +21,23 @@ shinyServer(function(input, output, session) {
   })
   
   gv %>%
-    ggvis(~x, ~-y) %>%
-    layer_points(size := 30, size.hover := 200, fill = ~des, key:=~id) %>%
+    ggvis(~x, ~-y+250) %>%
+    layer_points(size := 30, size.hover := 200, fill = ~Description, key:=~id) %>%
     scale_numeric("x", domain = c(0, 250), nice = FALSE) %>%
-    scale_numeric("y", domain = c(0, -250), nice = FALSE) %>%
+    scale_numeric("y", domain = c(0, 250), nice = FALSE) %>%
     hide_legend("stroke") %>%
     add_tooltip(all_values, "hover") %>%
+    add_axis("x", title = "x") %>%
+    add_axis("y", title = "y") %>%
     bind_shiny("plot", "plot_ui")
   
-  # Output data table
+  # Output data table .... waiting for 2014 data in Lahman database
   #output$table <- renderDataTable({    
   #  batting[, c("name", "yearID", "BA", "SO", "HR", "H", "R", "X2B", "BB")]
   #})
 
-  output$table <- renderDataTable({    
-    aggregate(batting[c("G", "AB", "R", "H", "X2B", "X3B", "HR", "BB")], by=batting[c("name")], FUN=sum)
-  })
+#   output$table <- renderDataTable({    
+#     aggregate(batting[c("G", "AB", "R", "H", "X2B", "X3B", "HR", "BB")], by=batting[c("name")], FUN=sum)
+#   })
   
 })

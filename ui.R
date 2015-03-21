@@ -15,12 +15,7 @@ shinyUI(dashboardPage(skin="black",
                           menuItem("Source code", icon = icon("file-code-o"), 
                                    href = "https://github.com/danmalter/Spray-Chart"),
                           menuItem(
-                            selectInput("player",
-                                        label = h5("Top 10 Batting Averages 2014"),
-                                        choices = list("Jose Altuve", "Victor Martinez", "Michael Brantley", "Adrian Beltre", 
-                                                       "Justin Morneau", "Jose Abreu", "Josh Harrison", 
-                                                       "Robinson Cano", "Andrew McCutchen", "Miguel Cabrera"),
-                                          #list(textInput("player", label = h5("Player Name"), value="Jose Abreu"),
+                            list(textInput("player", label = h5("Player Name"), value="Jose Abreu"),
                                               HTML
                                               ("<div style='font-size: 12px;'> - You must have a player chosen.</div>")
                             )
@@ -66,9 +61,9 @@ shinyUI(dashboardPage(skin="black",
                           ),
                           tabItem(tabName = "offensiveSprayChart",
 
-                          box(ggvisOutput("plot"), title = "Spray Charts (Top 10 Batting Avgerages - 2014)", width=15, collapsible = TRUE),
-                          HTML('<br/>'),
-                          box(dataTableOutput("table"), title = "Career Statistics", width=15, collapsible = TRUE))
+                          box(ggvisOutput("plot"), title = "Spray Charts (Top 10 Batting Avgerages - 2014)", width=15, collapsible = TRUE))
+                          #HTML('<br/>'),
+                          #box(dataTableOutput("table"), title = "Career Statistics", width=15, collapsible = TRUE))
                           
                         )
                         
