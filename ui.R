@@ -17,7 +17,7 @@ shinyUI(dashboardPage(skin="black",
                           menuItem(
                             list(textInput("player", label = h5("Player Name"), value="Jose Abreu"),
                                               HTML
-                                              ("<div style='font-size: 12px;'> - You must have a player chosen.</div>")
+                                              ("<div style='font-size: 12px;'> Player name must be spelled correctly.</div>")
                             )
                           )
                         )
