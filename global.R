@@ -36,7 +36,3 @@ batting <- merge(bstats,
                  Master[,c("playerID","name")],
                  by="playerID", all.x=TRUE)
 
-batting <- subset(batting, name == "Jose Altuve" | name == "Victor Martinez" |
-                   name == "Michael Brantley" | name == "Adrian Beltre" | name == "Justin Morneau" |
-                   name == "Jose Abreu" | name == "Josh Harrison" | name == "Robinson Cano" | 
-                   name == "Andrew McCutchen" | name == "Miguel Cabrera")
