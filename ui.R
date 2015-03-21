@@ -1,5 +1,10 @@
 ## ui.R
 
+library(shiny)
+library(shinyapps)
+library(shinydashboard)
+
+
 shinyUI(dashboardPage(skin="black",
                       dashboardHeader(title = "Hitters in Baseball"),
                       dashboardSidebar(
@@ -42,7 +47,7 @@ shinyUI(dashboardPage(skin="black",
                                   fluidRow(
                                     box(title = "Author: Danny Malter", background = "black", width=7, collapsible = TRUE,
                                         
-                                        helpText(p(strong("This application is meant to compare the offensive statistics for any player in MLB history between 1901 and 2013."))),
+                                        helpText(p(strong("This application shows the spray charts for the selected MLB players.  X and Y coordinates are scraped off of mlb.com."))),
                                         
                                         helpText(p("Please contact",
                                                    a(href ="https://twitter.com/danmalter", "Danny on twitter",target = "_blank"),
@@ -51,7 +56,7 @@ shinyUI(dashboardPage(skin="black",
                                                    ", for more information, to suggest improvements or report errors.")),
                                         
                                         helpText(p("All code and data is available at ",
-                                                   a(href ="https://github.com/danmalter/Batting", "my GitHub page",target = "_blank"),
+                                                   a(href ="https://github.com/danmalter/Spray-Chart", "my GitHub page",target = "_blank"),
                                                    "or click the 'source code' link on the sidebar on the left."
                                         ))
                                         
