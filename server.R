@@ -18,6 +18,7 @@ shinyServer(function(input, output, session) {
   # Generate your plot using ggvis with reactive inputs      
   gv <- reactive({
     if (input$player !='') spraychart <- spraychart[which(spraychart$full.name==input$player),]
+    spraychart <- subset(spraychart, Description %in% input$statistic)
   })
   
   gv %>%

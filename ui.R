@@ -17,14 +17,17 @@ shinyUI(dashboardPage(skin="black",
                           menuItem(
                             list(textInput("player", label = h5("Player Name"), value="Jose Abreu"),
                                               HTML
-                                              ("<div style='font-size: 12px;'> Player name must be spelled correctly.</div>")
-                            )
+                                              ("<div style='font-size: 12px;'> Player name must be spelled correctly.</div>"))),
+                          menuItem(
+                            checkboxGroupInput("statistic", label = h5("Statistic:"),
+                                             c("Bunt Out", "Flyout", "Groundout", "Lineout", 
+                                               "Pop Out", "Home Run", "Single", "Double", "Triple", "Error", "Other"),
+                                             selected=c("Bunt Out", "Flyout", "Groundout", "Lineout",
+                                                        "Pop Out", "Home Run", "Single", "Double", "Triple",
+                                                        "Error", "Other")))  
                           )
                         )
-                      
-                      
-                        
-                      ),
+                      ,
                       
                       
                       dashboardBody(
