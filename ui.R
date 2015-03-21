@@ -24,7 +24,8 @@ shinyUI(dashboardPage(skin="black",
                                                "Pop Out", "Home Run", "Single", "Double", "Triple", "Error", "Other"),
                                              selected=c("Bunt Out", "Flyout", "Groundout", "Lineout",
                                                         "Pop Out", "Home Run", "Single", "Double", "Triple",
-                                                        "Error", "Other")))  
+                                                        "Error", "Other"), 
+                                             inline = TRUE))  
                           )
                         )
                       ,
