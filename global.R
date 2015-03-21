@@ -11,9 +11,9 @@ library(Lahman)
    my_db <- src_sqlite("MLB2014.sqlite3", create = TRUE)
    scrape(start = "2014-03-30", end = "2014-09-30", connect = my_db$con, suffix = files)
    
-   locations <- select(tbl(my_db2, "hip"), des, x, y, batter, pitcher, type, team, inning)
+   locations <- select(tbl(my_db, "hip"), des, x, y, batter, pitcher, type, team, inning)
    locations <- as.data.frame(locations)
-   batters <- select(tbl(my_db2, "player"), first, last, id, bats, team_abbrev)
+   batters <- select(tbl(my_db, "player"), first, last, id, bats, team_abbrev)
    batters <- as.data.frame(batters, n=-1)
    batters$full.name <- paste(batters$first, batters$last, sep = " ")
    names(batters)[names(batters) == 'id'] <- 'batter'
