@@ -61,7 +61,7 @@ shinyUI(dashboardPage(skin="black",
                           ),
                           tabItem(tabName = "offensiveSprayChart",
 
-                          box(ggvisOutput("plot"), title = "MLB Spray Charts - 2014)", width=15, collapsible = TRUE))
+                          box(ggvisOutput("plot"), title = "MLB Spray Charts - 2014", width=15, collapsible = TRUE))
                           #HTML('<br/>'),
                           #box(dataTableOutput("table"), title = "Career Statistics", width=15, collapsible = TRUE))
                           
