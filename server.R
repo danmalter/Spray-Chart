@@ -32,10 +32,11 @@ shinyServer(function(input, output, session) {
     bind_shiny("plot", "plot_ui")
   
   # Output data table .... waiting for 2014 data in Lahman database
-  #output$table <- renderDataTable({    
-  #  batting[, c("name", "yearID", "BA", "SO", "HR", "H", "R", "X2B", "BB")]
-  #})
+  output$table <- renderDataTable({    
+    unique(spraychart[, c("full.name", "team_abbrev")])
+  })
 
+#   Output data table .... waiting for 2014 data in Lahman database
 #   output$table <- renderDataTable({    
 #     aggregate(batting[c("G", "AB", "R", "H", "X2B", "X3B", "HR", "BB")], by=batting[c("name")], FUN=sum)
 #   })
