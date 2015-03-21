@@ -10,6 +10,7 @@ shinyUI(dashboardPage(skin="black",
                       dashboardSidebar(
                         sidebarMenu(
                           menuItem("Spray Charts", tabName = "offensiveSprayChart", icon = icon("star-o")),
+                          menuItem("Spray Charts", tabName = "offensiveSprayChart", icon = icon("star-o")),
                           menuItem("About", tabName = "about", icon = icon("question-circle")),
                           menuItem("Source code", icon = icon("file-code-o"), 
                                    href = "https://github.com/danmalter/Spray-Chart"),
@@ -67,7 +68,7 @@ shinyUI(dashboardPage(skin="black",
 
                           box(ggvisOutput("plot"), title = "Spray Charts (Top 10 Batting Avgerages - 2014)", width=15, collapsible = TRUE),
                           HTML('<br/>'),
-                          box(dataTableOutput("table"), title = "Table of Players", width=15, collapsible = TRUE))
+                          box(dataTableOutput("table"), title = "Career Statistics", width=15, collapsible = TRUE))
                           
                         )
                         

@@ -4,6 +4,7 @@ library(dplyr)
 library(shiny)
 library(shinyapps)
 library(shinydashboard)
+library(Lahman)
 
 
    files <- c("inning/inning_hit.xml", "miniscoreboard.xml", "players.xml")
@@ -39,3 +40,17 @@ library(shinydashboard)
 spraychart <- paste("https://www.dropbox.com/s/nrbehu5ypvzufqd/spraychart.csv?dl=0")
 spraychart <- repmis::source_data(spraychart, sep = ",", header = TRUE)
 
+# Player data stats
+Master$name <- paste(Master$nameFirst, Master$nameLast, sep=' ')
+
+bstats <- battingStats(data = Lahman::Batting, 
+                       idvars = c("playerID", "yearID", "stint", "teamID", "lgID"), 
+                       cbind = TRUE)
+batting <- merge(bstats,
+                 Master[,c("playerID","name")],
+                 by="playerID", all.x=TRUE)
+
+batting <- subset(batting, name == "Jose Altuve" | name == "Victor Martinez" |
+                   name == "Michael Brantley" | name == "Adrian Beltre" | name == "Justin Morneau" |
+                   name == "Jose Abreu" | name == "Josh Harrison" | name == "Robinson Cano" | 
+                   name == "Andrew McCutchen" | name == "Miguel Cabrera")
