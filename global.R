@@ -21,23 +21,8 @@ library(Lahman)
    spraychart <- merge(locations, batters, by="batter") 
    names(spraychart)[names(spraychart) == 'des'] <- 'Description'
 
-   spraychart.top10 <- subset(spraychart, full.name == "Jose Altuve" | full.name == "Victor Martinez" |
-                                full.name == "Michael Brantley" | full.name == "Adrian Beltre" | full.name == "Justin Morneau" |
-                               full.name == "Jose Abreu" | full.name == "Josh Harrison" | full.name == "Robinson Cano" | 
-                               full.name == "Andrew McCutchen" | full.name == "Miguel Cabrera")
-  spraychart.top10 <- unique(spraychart.top10)
-  spraychart.top10$des <- as.factor(spraychart.top10$des)
-  
-  spraychart.top10$des <- factor(spraychart.top10$des,
-                                 levels=c("Batter Interference", "Bunt Groundout", "Bunt Pop Out", "Double",
-                                          "Error", "Fan interference", "Field Error", "Flyout", "Groundout",
-                                          "Home Run", "Lineout", "Pop Out", "Single", "Triple"),
-                                 labels=c("Other","Out", "Out", "Double", "Error", 
-                                          "Other", "Error", "Out", "Out", "Home Run",
-                                          "Out", "Out", "Single", "Triple"))
 
-
-# For ease of loading into a Shiny app, I uploaded spraychart.top10 into Dropbox and loaded a csv file from there.
+# For ease of loading into a Shiny app, I uploaded spraychart into Dropbox, did a bit of cleaning and reloaded the csv file from there.
 spraychart <- paste("https://www.dropbox.com/s/nlunrtjgniw3bmg/spraycharts.csv?dl=0")
 spraychart <- repmis::source_data(spraychart, sep = ",", header = TRUE)
 
