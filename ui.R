@@ -7,7 +7,7 @@ shinyUI(dashboardPage(skin="black",
                           menuItem("Spray Charts", tabName = "offensiveSprayChart", icon = icon("star-o")),
                           menuItem("About", tabName = "about", icon = icon("question-circle")),
                           menuItem("Source code", icon = icon("file-code-o"), 
-                                   href = "https://github.com/danmalter/Batting"),
+                                   href = "https://github.com/danmalter/Spray-Chart"),
                           menuItem(
                             selectInput("player",
                                         label = h5("Top 10 Batting Averages 2014"),
