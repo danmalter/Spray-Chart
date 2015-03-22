@@ -8,7 +8,8 @@ shinyServer(function(input, output, session) {
   all_values <- function(x) {
     if(is.null(x)) return(NULL)
     
-    paste0(spraychart$full.name[x$id],
+    paste0("Pitcher: ",
+           spraychart$pitcher.name[x$id],
            "<br>",
            spraychart$Description[x$id]
     )
@@ -17,7 +18,7 @@ shinyServer(function(input, output, session) {
   
   # Generate your plot using ggvis with reactive inputs      
   gv <- reactive({
-    if (input$player %in% spraychart$full.name) spraychart <- spraychart[which(spraychart$full.name==input$player),]
+    if (input$player %in% spraychart$batter.name) spraychart <- spraychart[which(spraychart$batter.name==input$player),]
     spraychart <- subset(spraychart, Description %in% input$statistic)
   })
   
@@ -35,7 +36,7 @@ shinyServer(function(input, output, session) {
   
   # Output data table .... waiting for 2014 data in Lahman database
   output$table <- renderDataTable({    
-    unique(spraychart[, c("full.name", "team_abbrev")])
+    unique(spraychart[, c("batter.name", "team_abbrev")])
   })
   
   #   Aggregarte output data table .... waiting for 2014 data in Lahman database
