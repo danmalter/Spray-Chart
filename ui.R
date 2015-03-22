@@ -6,7 +6,7 @@ library(shinydashboard)
 
 
 shinyUI(dashboardPage(skin="black",
-                      dashboardHeader(title = "Hitters in Baseball"),
+                      dashboardHeader(title = "MLB Spray Charts"),
                       dashboardSidebar(
                         sidebarMenu(
                           menuItem("Spray Charts", tabName = "offensiveSprayChart", icon = icon("star-o")),
