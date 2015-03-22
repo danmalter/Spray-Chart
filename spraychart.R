@@ -40,7 +40,6 @@ names(spraychart)[names(spraychart) == 'full.name'] <- 'batter.name'
 names(spraychart)[names(spraychart) == 'full_name'] <- 'pitcher.name'
 names(spraychart)[names(spraychart) == 'des'] <- 'Description'
 
-
 # Create ggvis tooltip  
 spraychart$id <- 1:nrow(spraychart)
 

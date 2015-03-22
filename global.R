@@ -6,9 +6,9 @@ library(shinyapps)
 library(shinydashboard)
 library(Lahman)
 
-files <- c("inning/inning_hit.xml", "players.xml", "miniscoreboard.xml")
+#files <- c("inning/inning_hit.xml", "players.xml", "miniscoreboard.xml")
 my_db <- src_sqlite("MLB2014.sqlite3", create = TRUE)
-scrape(start = "2014-05-12", end = "2014-05-12", connect = my_db$con, suffix = files)
+#scrape(start = "2014-03-30", end = "2014-09-30", connect = my_db$con, suffix = files)
 
 # There is no key that allows the tables to be joined through sqlite, so I write to a dataframe.
 locations <- select(tbl(my_db, "hip"), des, x, y, batter, pitcher, type, team, inning)
@@ -40,7 +40,8 @@ names(spraychart)[names(spraychart) == 'full_name'] <- 'pitcher.name'
 names(spraychart)[names(spraychart) == 'des'] <- 'Description'
 
 
-# For ease of loading into a Shiny app, I uploaded spraychart into Dropbox, did a bit of cleaning and reloaded the csv file from there.
+# To speed up the processing speed, I uploaded spraychart into Dropbox and reloaded the csv file from there.
+#write.csv(spraychart, "spraycharts.csv")
 #spraychart <- paste("https://www.dropbox.com/s/nlunrtjgniw3bmg/spraycharts.csv?dl=0")
 #spraychart <- repmis::source_data(spraychart, sep = ",", header = TRUE)
 
