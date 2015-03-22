@@ -6,9 +6,9 @@ library(shinyapps)
 library(shinydashboard)
 library(Lahman)
 
-#files <- c("inning/inning_hit.xml", "players.xml", "miniscoreboard.xml")
+files <- c("inning/inning_hit.xml", "players.xml", "miniscoreboard.xml")
 my_db <- src_sqlite("MLB2014.sqlite3", create = TRUE)
-#scrape(start = "2014-03-30", end = "2014-09-30", connect = my_db$con, suffix = files)
+scrape(start = "2014-03-30", end = "2014-09-30", connect = my_db$con, suffix = files)
 
 # There is no key that allows the tables to be joined through sqlite, so I write to a dataframe.
 locations <- select(tbl(my_db, "hip"), des, x, y, batter, pitcher, type, team, inning)
