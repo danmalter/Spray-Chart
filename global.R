@@ -26,7 +26,7 @@ names(spraychart)[names(spraychart) == 'des'] <- 'Description'
 spraychart <- paste("https://www.dropbox.com/s/nlunrtjgniw3bmg/spraycharts.csv?dl=0")
 spraychart <- repmis::source_data(spraychart, sep = ",", header = TRUE)
 
-# Player data stats
+# Player data stats for table
 Master$name <- paste(Master$nameFirst, Master$nameLast, sep=' ')
 
 bstats <- battingStats(data = Lahman::Batting, 

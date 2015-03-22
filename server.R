@@ -32,18 +32,13 @@ shinyServer(function(input, output, session) {
     add_axis("y", title = "y") %>%
     bind_shiny("plot", "plot_ui")
   
-  require(grid) # needed for arrow function
-  df <- as.data.frame(cbind(c(125,150,125,100,150,100),c(150,125,100,125,250,0),c(50,80,110,80,80,80),c(80,110,80,50,200,200)))
-  colnames(df) <- c('x','xend','y','yend')
-  ggplot() + geom_segment(data=df,mapping=aes(x=x,y=y,xend=xend,yend=yend,xmin=0,xmax=250,ymin=10,ymax=260),size=1,col='black') 
-  
   
   # Output data table .... waiting for 2014 data in Lahman database
   output$table <- renderDataTable({    
     unique(spraychart[, c("full.name", "team_abbrev")])
   })
   
-  #   Output data table .... waiting for 2014 data in Lahman database
+  #   Aggregarte output data table .... waiting for 2014 data in Lahman database
   #   output$table <- renderDataTable({    
   #     aggregate(batting[c("G", "AB", "R", "H", "X2B", "X3B", "HR", "BB")], by=batting[c("name")], FUN=sum)
   #   })
