@@ -7,7 +7,11 @@ library(RSQLite)
 library(pitchRx)
 
 files <- c("inning/inning_hit.xml", "players.xml", "miniscoreboard.xml")
+<<<<<<< HEAD
 my_db <- src_sqlite("MLB2014.sqlite3", create = TRUE)
+=======
+my_db <- src_sqlite("MLB.2014.sqlite3", create = TRUE)
+>>>>>>> origin/master
 scrape(start = "2014-03-30", end = "2014-09-30", connect = my_db$con, suffix = files)
 
 # There is no key that allows the tables to be joined, so I write to a dataframe.
@@ -46,6 +50,7 @@ spraychart <- subset(spraychart, batter.name=="Jose Abreu")
 spraychart$id <- 1:nrow(spraychart)
 
 all_values <- function(x) {
+<<<<<<< HEAD
   if(is.null(x)) return(NULL)
   
   paste0("Pitcher: ",
@@ -53,10 +58,20 @@ all_values <- function(x) {
          "<br>",
          spraychart$Description[x$id]
   )
+=======
+    if(is.null(x)) return(NULL)
+    
+    paste0("Pitcher: ",
+           spraychart$pitcher.name[x$id],
+           "<br>",
+           spraychart$Description[x$id]
+    )
+>>>>>>> origin/master
 }
 
 
 spraychart %>%
+<<<<<<< HEAD
   ggvis(~x, ~-y+250) %>%
   layer_points(size := 30, size.hover := 200, fill = ~Description, key:=~id) %>%
   scale_numeric("x", domain = c(0, 250), nice = FALSE) %>%
@@ -71,3 +86,19 @@ spraychart %>%
              title = list(fontSize = 12),
              labels = list(fontSize = 0)))
            ))
+=======
+    ggvis(~x, ~-y+250) %>%
+    layer_points(size := 30, size.hover := 200, fill = ~Description, key:=~id) %>%
+    scale_numeric("x", domain = c(0, 250), nice = FALSE) %>%
+    scale_numeric("y", domain = c(0, 250), nice = FALSE) %>%
+    hide_legend("stroke") %>%
+    add_tooltip(all_values, "hover") %>%
+    add_axis("x", title = "x") %>%
+    add_axis("y", title = "y") %>%
+    add_axis("x", orient = "top", ticks = 0, title = 'Jose Abreu 2014 Spray Chart',
+             properties = axis_props(
+                 axis = list(stroke = "white"),
+                 title = list(fontSize = 12),
+                 labels = list(fontSize = 0)
+             ))
+>>>>>>> origin/master
