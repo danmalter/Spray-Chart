@@ -65,9 +65,9 @@ spraychart %>%
     add_tooltip(all_values, "hover") %>%
     add_axis("x", title = "x") %>%
     add_axis("y", title = "y") %>%
-    add_axis("x", orient = "top", ticks = 0, title = 'May 12, 2014 MLB Spray Chart',
+    add_axis("x", orient = "top", ticks = 0, title = 'Jose Abreu 2014 Spray Chart',
              properties = axis_props(
                  axis = list(stroke = "white"),
-                 title = list(fontSize = 22),
+                 title = list(fontSize = 12),
                  labels = list(fontSize = 0)
              ))
