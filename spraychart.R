@@ -8,7 +8,7 @@ library(pitchRx)
 
 files <- c("inning/inning_hit.xml", "players.xml", "miniscoreboard.xml")
 my_db <- src_sqlite("MLB2014.sqlite3", create = TRUE)
-scrape(start = "2014-05-12", end = "2014-05-12", connect = my_db$con, suffix = files)
+scrape(start = "2014-03-30", end = "2014-09-30", connect = my_db$con, suffix = files)
 
 # There is no key that allows the tables to be joined, so I write to a dataframe.
 locations <- select(tbl(my_db, "hip"), des, x, y, batter, pitcher, type, team, inning)
@@ -32,13 +32,15 @@ batters <- batters[ !grepl("AL", batters$team_abbrev) , ]
 batters <- batters[ !grepl("NL", batters$team_abbrev) , ]
 batters <- batters[ !grepl("VER", batters$team_abbrev) , ]
 
-# Merge the batters and location tables together.  Not working properly for me 
-# so I wrote both to a csv and did a vlookup in Excel.
+# Merge the batters and location tables together.
 spraychart <- merge(locations, batters, by="batter.id")
 spraychart <- merge(spraychart, players, by.x="pitcher.id", by.y="player.id")
 names(spraychart)[names(spraychart) == 'full.name'] <- 'batter.name'
 names(spraychart)[names(spraychart) == 'full_name'] <- 'pitcher.name'
 names(spraychart)[names(spraychart) == 'des'] <- 'Description'
+
+# Subset to only look at Jose Abreu's spray chart
+spraychart <- subset(spraychart, batter.name=="Jose Abreu")
 
 # Create ggvis tooltip  
 spraychart$id <- 1:nrow(spraychart)
@@ -46,17 +48,26 @@ spraychart$id <- 1:nrow(spraychart)
 all_values <- function(x) {
   if(is.null(x)) return(NULL)
   
-  paste0(spraychart$full.name[x$id],
+  paste0("Pitcher: ",
+         spraychart$pitcher.name[x$id],
          "<br>",
-         spraychart$des[x$id]
+         spraychart$Description[x$id]
   )
 }
 
 
-  spraychart %>%
-    ggvis(~x, ~-y, stroke= ~full.name) %>%
-    layer_points(size := 30, size.hover := 200, fill = ~type, key:=~id) %>%
-    scale_numeric("x", domain = c(0, 250), nice = FALSE) %>%
-    scale_numeric("y", domain = c(0, -250), nice = FALSE) %>%
-    hide_legend("stroke") %>%
-    add_tooltip(all_values, "hover")
+spraychart %>%
+  ggvis(~x, ~-y+250) %>%
+  layer_points(size := 30, size.hover := 200, fill = ~Description, key:=~id) %>%
+  scale_numeric("x", domain = c(0, 250), nice = FALSE) %>%
+  scale_numeric("y", domain = c(0, 250), nice = FALSE) %>%
+  hide_legend("stroke") %>%
+  add_tooltip(all_values, "hover") %>%
+  add_axis("x", title = "x") %>%
+  add_axis("y", title = "y") %>%
+  add_axis("x", orient = "top", ticks = 0, title = 'Jose Abreu 2014 Spray Chart',
+           properties = axis_props(
+             axis = list(stroke = "white"),
+             title = list(fontSize = 12),
+             labels = list(fontSize = 0)))
+           ))
