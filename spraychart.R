@@ -32,8 +32,7 @@ batters <- batters[ !grepl("AL", batters$team_abbrev) , ]
 batters <- batters[ !grepl("NL", batters$team_abbrev) , ]
 batters <- batters[ !grepl("VER", batters$team_abbrev) , ]
 
-# Merge the batters and location tables together.  Not working properly for me 
-# so I wrote both to a csv and did a vlookup in Excel.
+# Merge the batters and location tables together.
 spraychart <- merge(locations, batters, by="batter.id")
 spraychart <- merge(spraychart, players, by.x="pitcher.id", by.y="player.id")
 names(spraychart)[names(spraychart) == 'full.name'] <- 'batter.name'
