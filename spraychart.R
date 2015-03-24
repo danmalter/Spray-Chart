@@ -1,8 +1,5 @@
-library(mosaic)
-library(ggplot2)
 library(ggvis)
 library(dplyr)
-library(ggplot2)
 library(RSQLite)
 library(pitchRx)
 
