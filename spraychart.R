@@ -27,7 +27,7 @@ names(players)[names(players) == 'id'] <- 'player.id'
 # Get the pitcher throws type
 players <- merge(players, batters, by.x="full_name", by.y="full.name")
 players <- players[,-c(3:5)]
-names(players)[names(players) == 'rl'] <- 'pitcher.rl'
+names(players)[names(players) == 'batter.rl'] <- 'pitcher.rl'
 
 # If scraping the whole season, you will need to take out non-mlb regular season games.
 batters <- batters[ !grepl("AL", batters$team_abbrev) , ]
@@ -48,18 +48,13 @@ spraychart <- subset(spraychart, batter.name=="Jose Abreu")
 spraychart$id <- 1:nrow(spraychart)
 
 all_values <- function(x) {
-    if(is.null(x)) return(NULL)
-    
-    paste0("Pitcher: ",
-           spraychart$pitcher.name[x$id],
-           "<br>",
-           spraychart$Description[x$id]
-    )
-
   if(is.null(x)) return(NULL)
   
   paste0("Pitcher: ",
          spraychart$pitcher.name[x$id],
+         "<br>",
+         "Throws: ",
+         spraychart$pitcher.rl[x$id],
          "<br>",
          spraychart$Description[x$id]
   )
@@ -80,18 +75,4 @@ spraychart %>%
                  axis = list(stroke = "white"),
                  title = list(fontSize = 12),
                  labels = list(fontSize = 0)
-             ))
-
-  ggvis(~x, ~-y+250) %>%
-  layer_points(size := 30, size.hover := 200, fill = ~Description, key:=~id) %>%
-  scale_numeric("x", domain = c(0, 250), nice = FALSE) %>%
-  scale_numeric("y", domain = c(0, 250), nice = FALSE) %>%
-  hide_legend("stroke") %>%
-  add_tooltip(all_values, "hover") %>%
-  add_axis("x", title = "x") %>%
-  add_axis("y", title = "y") %>%
-  add_axis("x", orient = "top", ticks = 0, title = 'Jose Abreu 2014 Spray Chart',
-           properties = axis_props(
-             axis = list(stroke = "white"),
-             title = list(fontSize = 12),
-             labels = list(fontSize = 0)))
+            ))
