@@ -41,7 +41,7 @@ shinyServer(function(input, output, session) {
   
   # Output data table .... waiting for 2014 data in Lahman database
   output$table <- renderDataTable({    
-    unique(spraychart[, c("batter.name", "team_abbrev")])
+    unique(spraychart[, c("batter.name", "team_abbrev", "batter.rl")])
   })
   
   #   Aggregarte output data table .... waiting for 2014 data in Lahman database
