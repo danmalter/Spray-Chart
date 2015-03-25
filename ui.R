@@ -19,6 +19,11 @@ shinyUI(dashboardPage(skin="black",
                                               HTML
                                               ("<div style='font-size: 12px;'> Player name must be spelled correctly.</div>"))),
                           menuItem(
+                            checkboxGroupInput("pitcher", label = h5("Pitcher Throw Type:"),
+                                               c("Left Handed Pitcher"="L", "Right Handed Pitcher"="R"),
+                                               selected=c("Left Handed Pitcher", "Right Handed Pitcher"), 
+                                               inline = TRUE)), 
+                          menuItem(
                             checkboxGroupInput("statistic", label = h5("Statistic:"),
                                              c("Bunt Out", "Flyout", "Groundout", "Lineout", 
                                                "Pop Out", "Home Run", "Single", "Double", "Triple", "Error", "Other"),

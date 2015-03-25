@@ -11,6 +11,9 @@ shinyServer(function(input, output, session) {
     paste0("Pitcher: ",
            spraychart$pitcher.name[x$id],
            "<br>",
+           "Throws: ",
+           spraychart$pitcher.rl[x$id],
+           "<br>",
            spraychart$Description[x$id]
     )
   }
@@ -20,6 +23,8 @@ shinyServer(function(input, output, session) {
   gv <- reactive({
     if (input$player %in% spraychart$batter.name) spraychart <- spraychart[which(spraychart$batter.name==input$player),]
     spraychart <- subset(spraychart, Description %in% input$statistic)
+    spraychart <- subset(spraychart, pitcher.rl %in% input$pitcher)
+    
   })
   
   gv %>%
