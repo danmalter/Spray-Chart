@@ -95,4 +95,3 @@ spraychart %>%
              axis = list(stroke = "white"),
              title = list(fontSize = 12),
              labels = list(fontSize = 0)))
-           ))

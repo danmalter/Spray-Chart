@@ -82,4 +82,3 @@ shinyUI(dashboardPage(skin="black",
                       
       )
 )
-
