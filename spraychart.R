@@ -14,15 +14,20 @@ locations <- locations[!duplicated(locations),]
 names(locations)[names(locations) == 'batter'] <- 'batter.id'
 names(locations)[names(locations) == 'pitcher'] <- 'pitcher.id'
 
-batters <- select(tbl(my_db, "player"), first, last, id, bats, team_abbrev)
+batters <- select(tbl(my_db, "player"), first, last, id, bats, team_abbrev, rl)
 batters <- as.data.frame(batters, n=-1)
 batters <- batters[!duplicated(batters),]
 batters$full.name <- paste(batters$first, batters$last, sep = " ")
 names(batters)[names(batters) == 'id'] <- 'batter.id'
 batters <- batters[,-c(1,2)]
+names(batters)[names(batters) == 'rl'] <- 'batter.rl'
 
 players <- as.data.frame(players, n=-1)
 names(players)[names(players) == 'id'] <- 'player.id'
+# Get the pitcher throws type
+players <- merge(players, batters, by.x="full_name", by.y="full.name")
+players <- players[,-c(3:5)]
+names(players)[names(players) == 'rl'] <- 'pitcher.rl'
 
 # If scraping the whole season, you will need to take out non-mlb regular season games.
 batters <- batters[ !grepl("AL", batters$team_abbrev) , ]
