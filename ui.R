@@ -10,7 +10,6 @@ shinyUI(dashboardPage(skin="black",
                       dashboardSidebar(
                         sidebarMenu(
                           menuItem("Spray Charts", tabName = "offensiveSprayChart", icon = icon("star-o")),
-                          menuItem("Spray Charts", tabName = "offensiveSprayChart", icon = icon("star-o")),
                           menuItem("About", tabName = "about", icon = icon("question-circle")),
                           menuItem("Source code", icon = icon("file-code-o"), 
                                    href = "https://github.com/danmalter/Spray-Chart"),
